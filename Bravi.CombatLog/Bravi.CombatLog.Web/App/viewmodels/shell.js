@@ -3,7 +3,7 @@
 
     return {
         router: router,
-        activate: function() {
+        activate: function () {            
             return router.activate('home');
         }
     };

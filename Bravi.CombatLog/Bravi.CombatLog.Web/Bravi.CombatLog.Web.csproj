@@ -156,6 +156,9 @@
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\models\currentPlayers.js" />
+    <Content Include="App\models\player.js" />
+    <Content Include="App\services\servicePlayer.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\home.html" />
