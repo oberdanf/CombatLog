@@ -14,6 +14,7 @@ namespace Bravi.CombatLog.Web.App_Start {
           .Include("~/Scripts/knockout-{version}.js")
           .Include("~/Scripts/sammy-{version}.js")
           .Include("~/Scripts/bootstrap.min.js")
+          .Include("~/Scripts/knockout.custom.binding.handlers.js")
         );
 
       bundles.Add(

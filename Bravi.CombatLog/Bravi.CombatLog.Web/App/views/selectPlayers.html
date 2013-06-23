@@ -1,8 +1,0 @@
-﻿<section id="section-selectPlayers">
-    <fieldset data-role="controlgroup">
-        <!-- ko foreach: players -->
-        <input type="checkbox" data-bind="checked: marked, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }">
-        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: name"></label>
-        <!-- /ko -->
-    </fieldset>
-</section>

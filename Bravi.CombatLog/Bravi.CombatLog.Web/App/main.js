@@ -27,8 +27,21 @@ define(function (require) {
 
            //configure routing
            router.useConvention();
-           router.mapNav('home');
-           router.mapNav('selectplayers');
+
+           router.map([
+            {
+                url: 'home',
+                name: 'Home',
+                visible: true,
+                caption: 'Home'
+            },
+            {
+                url: 'selectplayers',
+                name: 'Select players',
+                visible: false,
+                caption: 'Select Players'
+            }
+           ]);
 
            app.adaptToDevice();
 

@@ -1,11 +1,11 @@
 ﻿define(function (require) {
     var router = require('durandal/plugins/router');
 
-    var startCombat = function () {
+    var selectPlayers = function () {
         router.navigateTo('#/selectplayers');
     };
 
     return {
-        startCombat: startCombat
+        selectPlayers: selectPlayers
     };
 });

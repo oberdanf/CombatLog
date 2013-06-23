@@ -160,10 +160,10 @@
     <Content Include="App\models\player.js" />
     <Content Include="App\services\playerService.js" />
     <Content Include="App\viewmodels\home.js" />
-    <Content Include="App\viewmodels\selectPlayers.js" />
+    <Content Include="App\viewmodels\selectplayers.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\home.html" />
-    <Content Include="App\views\selectPlayers.html" />
+    <Content Include="App\views\selectplayers.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap-responsive.css" />
@@ -213,6 +213,7 @@
     <Content Include="Scripts\jquery.mobile.custom.min.js" />
     <Content Include="Scripts\knockout-2.2.1.debug.js" />
     <Content Include="Scripts\knockout-2.2.1.js" />
+    <Content Include="Scripts\knockout.custom.binding.handlers.js" />
     <Content Include="Scripts\sammy-0.7.4.js" />
     <Content Include="Scripts\sammy-0.7.4.min.js" />
     <Content Include="Web.config" />
