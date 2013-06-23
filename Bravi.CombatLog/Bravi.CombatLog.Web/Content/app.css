@@ -20,7 +20,7 @@
 
 .page-host {
     position: relative;
-    padding-top: 30px;
+    top: 50px;
 }
 
 .navbar-fixed-top .navbar-inner {
@@ -43,7 +43,7 @@
 
 @media (max-width: 979px) {
     .page-host {
-        top: 0;
+        top: 10px;
     }
 
     .navbar-fixed-top {

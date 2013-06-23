@@ -1,7 +1,7 @@
 using System;
 using System.Web.Optimization;
 
-namespace Bravi.CombatLog.Web {
+namespace Bravi.CombatLog.Web.App_Start {
   public class DurandalBundleConfig {
     public static void RegisterBundles(BundleCollection bundles) {
       bundles.IgnoreList.Clear();
@@ -9,6 +9,7 @@ namespace Bravi.CombatLog.Web {
 
       bundles.Add(
         new ScriptBundle("~/scripts/vendor")
+          .Include("~/Scripts/jquery.mobile.custom.js")
           .Include("~/Scripts/jquery-{version}.js")
           .Include("~/Scripts/knockout-{version}.js")
           .Include("~/Scripts/sammy-{version}.js")
@@ -17,6 +18,8 @@ namespace Bravi.CombatLog.Web {
 
       bundles.Add(
         new StyleBundle("~/Content/css")
+          .Include("~/Content/jquery.mobile.custom.structure.css")
+          .Include("~/Content/jquery.mobile.custom.theme.css")
           .Include("~/Content/ie10mobile.css")
           .Include("~/Content/bootstrap.min.css")
           .Include("~/Content/bootstrap-responsive.min.css")
