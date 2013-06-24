@@ -27,6 +27,7 @@ namespace Bravi.CombatLog.Web.App_Start {
           .Include("~/Content/font-awesome.min.css")
 		  .Include("~/Content/durandal.css")
           .Include("~/Content/app.css")
+          .Include("~/Content/combatlog.css")
         );
     }
 
