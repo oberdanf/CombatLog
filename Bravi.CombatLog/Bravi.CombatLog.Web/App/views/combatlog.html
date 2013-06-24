@@ -5,9 +5,24 @@
         <legend>
             <h2>Round 1 <small>Choose Winner</small></h2>
         </legend>
+        
+        
+        
+        <div id="chooseWinner-container" class="text-center">
+            <a href="javascript:void(0);" data-bind="click: function () { setWinner(selectedPlayers()[0]) }">
+                <img src="../../Content/heroes/scorpion.png" alt="">
+                <h4 data-bind="text: selectedPlayers()[0].name"></h4>
+            </a>
+            <h2>VS.</h2>
+            <a href="javascript:void(0);" data-bind="click: function () { setWinner(selectedPlayers()[1]) }">
+                <img src="../../Content/heroes/reptile.png" alt="">
+                <h4 data-bind="text: selectedPlayers()[1].name"></h4>
+            </a>
+        </div>
+        
 
-        <div id="chooseWinner-container" class="text-center" style="">
-            <a href="#">
+<!--    <div id="chooseWinner-container" class="text-center">
+            <a href="javascript:void(0);" data-bind="click: sayHello">
                 <img src="../../Content/heroes/scorpion.png" alt="">
                 <h4>Danillo Corvalan</h4>
             </a>
@@ -16,7 +31,7 @@
                 <img src="../../Content/heroes/reptile.png" alt="">
                 <h4>Mauricio Minella</h4>
             </a>
-        </div>
+        </div>-->
 
         <!--<ul class="thumbnails">
             <li class="span4">

@@ -1,6 +1,6 @@
 ﻿define(function (require) {
-    var currentPlayers = require('models/currentPlayers');
-    
+    var currentPlayers = require('models/currentPlayers'),
+        router = require('durandal/plugins/router');
 
     return {
         selectedPlayers: function() {
@@ -12,7 +12,13 @@
 
             return selectedFromCurrentPlayers;
         },
-        activate: function() {
+        setWinner: function (player) {
+            alert(player.name + '\r\n' + player.email);
+        },
+        activate: function () {
+            if (!this.selectedPlayers() || this.selectedPlayers().length !== 2) {
+                router.navigateTo('#/selectplayers');
+            }
         }
     };
 });
