@@ -159,9 +159,11 @@
     <Content Include="App\models\currentPlayers.js" />
     <Content Include="App\models\player.js" />
     <Content Include="App\services\playerService.js" />
+    <Content Include="App\viewmodels\combatlog.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\selectplayers.js" />
     <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\views\combatlog.html" />
     <Content Include="App\views\home.html" />
     <Content Include="App\views\selectplayers.html" />
     <Content Include="App\views\shell.html" />
@@ -181,6 +183,8 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
+    <Content Include="Content\heroes\reptile.png" />
+    <Content Include="Content\heroes\scorpion.png" />
     <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />

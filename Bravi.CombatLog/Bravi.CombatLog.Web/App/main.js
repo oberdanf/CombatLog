@@ -29,18 +29,24 @@ define(function (require) {
            router.useConvention();
 
            router.map([
-            {
-                url: 'home',
-                name: 'Home',
-                visible: true,
-                caption: 'Home'
-            },
-            {
-                url: 'selectplayers',
-                name: 'Select players',
-                visible: false,
-                caption: 'Select Players'
-            }
+               {
+                   url: 'home',
+                   name: 'Home',
+                   visible: true,
+                   caption: 'Home'
+               },
+               {
+                   url: 'selectplayers',
+                   name: 'Select players',
+                   visible: false,
+                   caption: 'Select Players'
+               },
+               {
+                   url: 'combatlog',
+                   name: 'Combat Log',
+                   visible: false,
+                   caption: 'Combat Log'
+               }
            ]);
 
            app.adaptToDevice();
