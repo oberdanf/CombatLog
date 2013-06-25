@@ -1,60 +1,25 @@
 ﻿<section id="combatLog-section">
-    
-
     <fieldset>
         <legend>
             <h2>Round 1 <small>Choose Winner</small></h2>
         </legend>
         
-        
-        
         <div id="chooseWinner-container" class="text-center">
-            <a href="javascript:void(0);" data-bind="click: function () { setWinner(selectedPlayers()[0]) }">
+            <a href="javascript:void(0);" data-bind="css: { 'player-selected': playerWinnerNumber() == 1 }, click: function () { playerWinnerNumber(1) }">
                 <img src="../../Content/heroes/scorpion.png" alt="">
                 <h4 data-bind="text: selectedPlayers()[0].name"></h4>
             </a>
             <h2>VS.</h2>
-            <a href="javascript:void(0);" data-bind="click: function () { setWinner(selectedPlayers()[1]) }">
+            <a href="javascript:void(0);" data-bind="css: {'player-selected' : playerWinnerNumber() == 2}, click: function () { playerWinnerNumber(2) }">
                 <img src="../../Content/heroes/reptile.png" alt="">
                 <h4 data-bind="text: selectedPlayers()[1].name"></h4>
             </a>
         </div>
         
-
-<!--    <div id="chooseWinner-container" class="text-center">
-            <a href="javascript:void(0);" data-bind="click: sayHello">
-                <img src="../../Content/heroes/scorpion.png" alt="">
-                <h4>Danillo Corvalan</h4>
-            </a>
-            <h2>VS.</h2>
-            <a href="#">
-                <img src="../../Content/heroes/reptile.png" alt="">
-                <h4>Mauricio Minella</h4>
-            </a>
-        </div>-->
-
-        <!--<ul class="thumbnails">
-            <li class="span4">
-                <a href="#" class="thumbnail">
-                    <img src="../../Content/heroes/scorpion.png" alt="">
-                </a>
-                <h3>Danillo Corvalan</h3>
-            </li>
-            <li class="text-center">
-                <h1>VS.</h1>
-            </li>
-            <li class="span4">
-                <a href="#" class="thumbnail">
-                    <img src="../../Content/heroes/reptile.png" alt="">
-                </a>
-                <h3>Mauricio Minella</h3>
-            </li>
-        </ul>-->
-        
         <p>
-            <button class="btn btn-large btn-block btn-primary">Save and Next Round</button>
-            <button class="btn btn-large btn-block btn-info">Save and Finish</button>
-            <button class="btn btn-large btn-block">Cancel</button>
+            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block btn-primary">Save and Next Round</button>
+            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block btn-info">Save and Finish</button>
+            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block">Cancel</button>
         </p>
     </fieldset>
 </section>

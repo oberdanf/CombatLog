@@ -9,10 +9,13 @@
     border: 10px solid transparent;
     overflow: auto;
     display: block;
+    text-decoration: none;
+    color: black;
 }
 
-#chooseWinner-container a:hover {
+#chooseWinner-container a:hover, #chooseWinner-container a.player-selected {
     border: 10px solid rgb(136, 166, 204);
+    color: rgb(47, 162, 226);
 }
 
 #chooseWinner-container h2 {
