@@ -156,8 +156,14 @@
     <Content Include="App\durandal\widget.js" />
     <Content Include="App\main-built.js" />
     <Content Include="App\main.js" />
-    <Content Include="App\models\currentPlayers.js" />
+    <Content Include="App\models\character.js" />
+    <Content Include="App\models\combat.js" />
+    <Content Include="App\models\match.js" />
+    <Content Include="App\models\round.js" />
+    <Content Include="App\models\___currentPlayers.js" />
     <Content Include="App\models\player.js" />
+    <Content Include="App\models\playerCharacter.js" />
+    <Content Include="App\services\characterService.js" />
     <Content Include="App\services\combatLogService.js" />
     <Content Include="App\services\playerService.js" />
     <Content Include="App\viewmodels\combatlog.js" />
@@ -185,8 +191,8 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font\fontawesome-webfont.svg" />
-    <Content Include="Content\heroes\reptile.png" />
-    <Content Include="Content\heroes\scorpion.png" />
+    <Content Include="Content\characters\reptile.png" />
+    <Content Include="Content\characters\scorpion.png" />
     <Content Include="Content\ie10mobile.css" />
     <Content Include="Content\images\ajax-loader.gif" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />

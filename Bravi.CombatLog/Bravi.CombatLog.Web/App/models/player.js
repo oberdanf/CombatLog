@@ -1,9 +1,9 @@
-﻿define(function () {
-    var player = function (name, email) {
+﻿define(function () {    
+    var player = function (playerNumber, name) {
         var self = this;
+
+        self.playerNumber = playerNumber;
         self.name = name;
-        self.email = email;
-        self.marked = ko.observable(false);
     };
     return player;
 });
