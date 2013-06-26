@@ -158,6 +158,7 @@
     <Content Include="App\main.js" />
     <Content Include="App\models\currentPlayers.js" />
     <Content Include="App\models\player.js" />
+    <Content Include="App\services\combatLogService.js" />
     <Content Include="App\services\playerService.js" />
     <Content Include="App\viewmodels\combatlog.js" />
     <Content Include="App\viewmodels\home.js" />

@@ -1,7 +1,7 @@
 ﻿<section id="combatLog-section">
     <fieldset>
         <legend>
-            <h2>Round 1 <small>Choose Winner</small></h2>
+            <h2 data-bind="text: 'Round ' + round()"><small>Choose Winner</small></h2>
         </legend>
         
         <div id="chooseWinner-container" class="text-center">
@@ -17,9 +17,9 @@
         </div>
         
         <p>
-            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block btn-primary">Save and Next Round</button>
-            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block btn-info">Save and Finish</button>
-            <button data-bind="enable: playerWinnerNumber" class="btn btn-large btn-block">Cancel</button>
+            <button data-bind="click: saveAndNextRound,enable: playerWinnerNumber" class="btn btn-large btn-block btn-primary">Save and Next Round</button>
+            <button data-bind="click: saveAndFinish, enable: playerWinnerNumber" class="btn btn-large btn-block btn-info">Save and Finish</button>
+            <button data-bind="click: cancel" class="btn btn-large btn-block">Cancel</button>
         </p>
     </fieldset>
 </section>
