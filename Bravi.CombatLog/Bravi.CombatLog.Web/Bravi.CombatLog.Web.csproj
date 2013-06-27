@@ -163,9 +163,11 @@
     <Content Include="App\models\___currentPlayers.js" />
     <Content Include="App\models\player.js" />
     <Content Include="App\models\playerCharacter.js" />
-    <Content Include="App\services\characterService.js" />
-    <Content Include="App\services\combatLogService.js" />
-    <Content Include="App\services\playerService.js" />
+    <Content Include="App\services\combatService.js" />
+    <Content Include="App\services\dataService.js" />
+    <Content Include="App\services\___characterService.js" />
+    <Content Include="App\services\___combatLogService.js" />
+    <Content Include="App\services\___playerService.js" />
     <Content Include="App\viewmodels\combatlog.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\selectplayers.js" />
