@@ -1,10 +1,10 @@
 ﻿<section id="section-selectPlayers">
     <div data-role="controlgroup">
-        <!-- ko foreach: players -->
-        <input type="checkbox" data-bind="checked: marked, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }, disable: !marked() && $parent.selectedPlayers().length == 2, jqmRefresh: {}">
-        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: name"></label>
+        <!-- ko foreach: playersToSelect -->
+        <input type="checkbox" data-bind="checked: selected, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }, disable: !selected() && $parent.selectedPlayers().length == 2, jqmRefresh: {}">
+        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: player.name"></label>
         <!-- /ko -->
     </div>
     
-    <button class="btn btn-primary btn-block" data-bind="click: startLog, enable: selectedPlayers().length == 2">Start!</button>
+    <button class="btn btn-primary btn-block" data-bind="click: goToSelectCharacters, enable: selectedPlayers().length == 2">Select Characters</button>
 </section>

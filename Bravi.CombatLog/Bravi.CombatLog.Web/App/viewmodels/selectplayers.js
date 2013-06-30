@@ -1,5 +1,5 @@
 ﻿define(function (require) {
-    var sharedSelectedPlayers = require('models/selectedPlayers'),
+    var sharedSelectedPlayers = require('models/sharedSelectedPlayers'),
         dataService = require('services/dataService'),
         router = require('durandal/plugins/router');
 
@@ -9,10 +9,10 @@
         self.selected = ko.observable(false);
     };
 
-    var playersToSelect = ko.observable();
+    var playersToSelect = ko.observableArray([]);
 
     var setPlayers = function () {
-        var deferred = new $.Deffered();
+        var deferred = new $.Deferred();
         
         dataService.getAllPlayers().done(getAllPlayersSuccess);
         function getAllPlayersSuccess(playersReturned) {
@@ -27,23 +27,26 @@
         return deferred.promise();
     };
 
-    var goToSelectCharacters = function() {
-        var selectedPlayers = playersToSelect().filter(function(item) {
+    var selectedPlayers = ko.computed(function() {
+        return playersToSelect().filter(function(item) {
             return item.selected() === true;
         });
-        
-        if (selectedPlayers.length !== 2) {
+    });
+
+    var goToSelectCharacters = function() {
+        if (selectedPlayers().length !== 2) {
             throw new Error('You must have only two players');
         }
 
-        sharedSelectedPlayers.player1(selectedPlayers[0]);
-        sharedSelectedPlayers.player2(selectedPlayers[1]);
+        sharedSelectedPlayers.player1(selectedPlayers()[0]);
+        sharedSelectedPlayers.player2(selectedPlayers()[1]);
         
         router.navigateTo('#/selectcharacters');
     };
 
     return {
-        playersToSelect : playersToSelect,
+        playersToSelect: playersToSelect,
+        selectedPlayers: selectedPlayers,
         goToSelectCharacters: goToSelectCharacters,
         viewAttached: function () {
             $('body').trigger('create');

@@ -1,9 +1,7 @@
 ﻿define(function (require) {
-    var router = require('durandal/plugins/router'),
-        combatService = require('services/combatService');
+    var router = require('durandal/plugins/router');
 
     var startNewCombat = function () {
-        combatService.startNewCombat();
         router.navigateTo('#/selectplayers');
     };
 
