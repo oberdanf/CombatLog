@@ -160,6 +160,7 @@
     <Content Include="App\models\combat.js" />
     <Content Include="App\models\match.js" />
     <Content Include="App\models\round.js" />
+    <Content Include="App\models\sharedSelectedPlayers.js" />
     <Content Include="App\models\___currentPlayers.js" />
     <Content Include="App\models\player.js" />
     <Content Include="App\models\playerCharacter.js" />
