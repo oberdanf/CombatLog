@@ -171,10 +171,12 @@
     <Content Include="App\services\___playerService.js" />
     <Content Include="App\viewmodels\combatlog.js" />
     <Content Include="App\viewmodels\home.js" />
+    <Content Include="App\viewmodels\selectcharacters.js" />
     <Content Include="App\viewmodels\selectplayers.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\combatlog.html" />
     <Content Include="App\views\home.html" />
+    <Content Include="App\views\selectcharacters.html" />
     <Content Include="App\views\selectplayers.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\app.css" />

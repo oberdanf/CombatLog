@@ -38,8 +38,8 @@
             throw new Error('You must have only two players');
         }
 
-        sharedSelectedPlayers.player1(selectedPlayers()[0]);
-        sharedSelectedPlayers.player2(selectedPlayers()[1]);
+        sharedSelectedPlayers.player1(selectedPlayers()[0].player);
+        sharedSelectedPlayers.player2(selectedPlayers()[1].player);
         
         router.navigateTo('#/selectcharacters');
     };

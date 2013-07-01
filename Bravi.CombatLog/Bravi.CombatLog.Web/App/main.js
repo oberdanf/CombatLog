@@ -38,6 +38,12 @@ define(function (require) {
                    caption: 'Select Players'
                },
                {
+                   url: 'selectcharacters',
+                   name: 'Select characters',
+                   visible: false,
+                   caption: 'Select Characters'
+               },
+               {
                    url: 'combatlog',
                    name: 'Combat Log',
                    visible: false,

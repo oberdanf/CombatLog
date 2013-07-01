@@ -1,0 +1,12 @@
+﻿<section id="section-selectCharacters">
+    <h1 data-bind="html: 'Choose <span class=\'success\'>' + playerToChoose().name + '</span> Character'"></h1>
+    <div data-role="controlgroup">
+        <!-- ko foreach: charactersToSelect -->
+        <input type="checkbox" data-bind="checked: selected, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }">
+        <img data-bind="attr: { src: character.thumbUrl, alt: character.name, title: character.name }"/>
+        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: character.name"></label>
+        <!-- /ko -->
+    </div>
+    
+    <button class="btn btn-primary btn-block" data-bind="click: selectCharacter">Confirm</button>
+</section>
