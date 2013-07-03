@@ -3,7 +3,7 @@
     <ul class="nav nav-pills nav-stacked">
         <!-- ko foreach: playersToSelect -->
         <li data-bind="css: { 'active': selected, 'disabled': !selected() && $parent.selectedPlayers().length == 2 }">
-            <a href="#" data-bind="text: player.name, click: function () { if (selected()) { selected(false); } else { selected(true); } }" class="well"></a>
+            <a href="#" data-bind="text: player.name, click: function () { if ($parent.selectedPlayers().length == 2) { return; }; if (selected()) { selected(false); } else { selected(true); } }" class="well"></a>
         </li>
         <!-- /ko -->
     </ul>
