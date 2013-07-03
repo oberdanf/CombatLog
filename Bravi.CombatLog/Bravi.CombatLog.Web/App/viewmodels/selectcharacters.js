@@ -54,7 +54,13 @@
         charactersToSelect: charactersToSelect,
         playerToChoose: playerToChoose,
         selectCharacter: selectCharacter,
-        activate: function() {
+        viewAttached: function () {
+            $('body').trigger('create');
+            setTimeout(function () {
+                $('body').trigger('create');
+            }, 250);
+        },
+        activate: function () {
             if (!sharedSelectedPlayers || !sharedSelectedPlayers.player1 || !sharedSelectedPlayers.player2) {
                 throw new Error('shared players not set.');
             }

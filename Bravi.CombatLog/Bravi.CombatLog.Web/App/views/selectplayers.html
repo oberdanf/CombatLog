@@ -1,10 +1,12 @@
 ﻿<section id="section-selectPlayers">
-    <div data-role="controlgroup">
+    
+    <ul class="nav nav-pills nav-stacked">
         <!-- ko foreach: playersToSelect -->
-        <input type="checkbox" data-bind="checked: selected, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }, disable: !selected() && $parent.selectedPlayers().length == 2, jqmRefresh: {}">
-        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: player.name"></label>
+        <li data-bind="css: { 'active': selected, 'disabled': !selected() && $parent.selectedPlayers().length == 2 }">
+            <a href="#" data-bind="text: player.name, click: function () { if (selected()) { selected(false); } else { selected(true); } }" class="well"></a>
+        </li>
         <!-- /ko -->
-    </div>
+    </ul>
     
     <button class="btn btn-primary btn-block" data-bind="click: goToSelectCharacters, enable: selectedPlayers().length == 2">Select Characters</button>
 </section>

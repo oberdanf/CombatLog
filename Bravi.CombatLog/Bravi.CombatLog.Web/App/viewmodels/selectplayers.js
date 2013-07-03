@@ -18,7 +18,16 @@
         function getAllPlayersSuccess(playersReturned) {
             var _players = [];
             for (var i = 0; i < playersReturned.length; i++) {
-                _players.push(new selectablePlayer(playersReturned[i]));
+                var _selectablePlayer = new selectablePlayer(playersReturned[i]);
+
+                var isPlayer1 = (sharedSelectedPlayers.player1() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.player1().playerNumber);
+                var isPlayer2 = (sharedSelectedPlayers.player2() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.player2().playerNumber);
+                
+                if (isPlayer1 || isPlayer2) {
+                    _selectablePlayer.selected(true);
+                }
+
+                _players.push(_selectablePlayer);
             }
             playersToSelect(_players);
             deferred.resolve();

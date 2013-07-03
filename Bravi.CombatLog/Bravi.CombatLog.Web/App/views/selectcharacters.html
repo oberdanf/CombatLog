@@ -1,12 +1,28 @@
 ﻿<section id="section-selectCharacters">
-    <h1 data-bind="html: 'Choose <span class=\'success\'>' + playerToChoose().name + '</span> Character'"></h1>
-    <div data-role="controlgroup">
-        <!-- ko foreach: charactersToSelect -->
-        <input type="checkbox" data-bind="checked: selected, attr: { 'id': 'checkbox-player-' + $index(), 'name': 'checkbox-player-' + $index() }">
-        <img data-bind="attr: { src: character.thumbUrl, alt: character.name, title: character.name }"/>
-        <label data-bind="attr: { 'for': 'checkbox-player-' + $index() }, text: character.name"></label>
-        <!-- /ko -->
-    </div>
-    
-    <button class="btn btn-primary btn-block" data-bind="click: selectCharacter">Confirm</button>
+    <!--<h3 data-bind="html: 'Choose <span class=\'text-info\'>' + playerToChoose().name + '</span> Character'"></h3>-->
+
+    <ul data-role="listview" data-inset="true">
+        <li><a href="#">
+            <img src="../../Content/characters/scorpion.png">
+            <h2>Broken Bells</h2>
+            <p>Broken Bells</p>
+        </a>
+        </li>
+        <li><a href="#">
+            <img src="../../Content/characters/reptile.png">
+            <h2>Warning</h2>
+            <p>Hot Chip</p>
+        </a>
+        </li>
+    </ul>
+
+    <!--<button class="btn btn-primary btn-block" data-bind="click: selectCharacter">Confirm</button>-->
+
+
+    <!--<li>
+            <a href="#">
+                <img data-bind="attr: { src: character.thumbUrl, alt: character.name, title: character.name }" alt="" />
+                <h2 data-bind="text: character.name"></h2>
+            </a>
+        </li>-->
 </section>
