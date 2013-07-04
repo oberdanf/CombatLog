@@ -1,7 +1,6 @@
 ﻿define(function (require) {
     var dataService = require('services/dataService'),
-        sharedSelectedPlayers = require('models/sharedSelectedPlayers'),
-        playerCharacter = require('models/playerCharacter');
+        sharedSelectedPlayers = require('models/sharedSelectedPlayers');
 
     var selectableCharacter = function (character) {
         var self = this;
@@ -12,8 +11,6 @@
     var playerToChoose = ko.observable('');
     var charactersToSelect = ko.observableArray([]);
 
-    var playersCharacters = [];
-
     var selectCharacter = function(selectedCharacter) {
         if (!selectedCharacter) {
             throw new Error('character must not be null');
@@ -21,16 +18,27 @@
         if (!playerToChoose()) {
             throw new Error('must have a player');
         }
-        if (playersCharacters.length >= 2) {
-            throw new Error('must have only two players');
+
+        var chosenPlayerNumber = playerToChoose().playerNumber;
+
+        if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter1().player.playerNumber) {
+            sharedSelectedPlayers.setPlayer1Character(selectedCharacter);
         }
+        else if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter2().player.playerNumber) {
+            sharedSelectedPlayers.setPlayer2Character(selectedCharacter);
+        }
+        else {
+            throw new Error('Invalid player Number');
+        }
+
 
         playersCharacters.push(new playerCharacter(playerToChoose(), selectedCharacter));
 
         if (playersCharacters.length === 2) {
+            sharedSelectedPlayers.setPlayer1Character
             router.navigateTo('#/combatlog');
         } else {
-            playerToChoose(sharedSelectedPlayers.player2());
+            playerToChoose(sharedSelectedPlayers.playerCharacter2().player);
         }
     };
     
@@ -61,11 +69,11 @@
             }, 250);
         },
         activate: function () {
-            if (!sharedSelectedPlayers || !sharedSelectedPlayers.player1 || !sharedSelectedPlayers.player2) {
+            if (!sharedSelectedPlayers || !sharedSelectedPlayers.playerCharacter1().player || !sharedSelectedPlayers.playerCharacter2().player) {
                 throw new Error('shared players not set.');
             }
 
-            playerToChoose(sharedSelectedPlayers.player1());
+            playerToChoose(sharedSelectedPlayers.playerCharacter1().player);
             return setCharacters();
         }
     };

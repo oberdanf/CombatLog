@@ -20,8 +20,8 @@
             for (var i = 0; i < playersReturned.length; i++) {
                 var _selectablePlayer = new selectablePlayer(playersReturned[i]);
 
-                var isPlayer1 = (sharedSelectedPlayers.player1() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.player1().playerNumber);
-                var isPlayer2 = (sharedSelectedPlayers.player2() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.player2().playerNumber);
+                var isPlayer1 = (sharedSelectedPlayers.playerCharacter1() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.playerCharacter1().player.playerNumber);
+                var isPlayer2 = (sharedSelectedPlayers.playerCharacter2() && _selectablePlayer.player.playerNumber === sharedSelectedPlayers.playerCharacter2().player.playerNumber);
                 
                 if (isPlayer1 || isPlayer2) {
                     _selectablePlayer.selected(true);
@@ -47,8 +47,8 @@
             throw new Error('You must have only two players');
         }
 
-        sharedSelectedPlayers.player1(selectedPlayers()[0].player);
-        sharedSelectedPlayers.player2(selectedPlayers()[1].player);
+        sharedSelectedPlayers.setPlayer1(selectedPlayers()[0].player);
+        sharedSelectedPlayers.setPlayer2(selectedPlayers()[1].player);
         
         router.navigateTo('#/selectcharacters');
     };
