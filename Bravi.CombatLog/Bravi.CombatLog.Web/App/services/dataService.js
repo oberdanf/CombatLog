@@ -8,8 +8,7 @@ define(function (require) {
         var allCharacters = [
             new character('scorpion', '../../Content/characters/scorpion.png'),
             new character('reptile', '../../Content/characters/reptile.png'),
-            new character('smoke', '../../Content/characters/smoke.png'),
-            new character('sub-zero', '../../Content/characters/sub-zero.png')
+            new character('smoke', '../../Content/characters/smoke.png')
         ];
         
         return deferred.resolve(allCharacters).promise();

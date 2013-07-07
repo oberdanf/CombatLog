@@ -1,0 +1,25 @@
+﻿<section id="combatLog-section">
+    <fieldset>
+        <legend>
+            <h2 data-bind="text: 'Round ' + round()"><small>Choose Winner</small></h2>
+        </legend>
+        
+        <div id="chooseWinner-container" class="text-center">
+            <a href="javascript:void(0);" data-bind="css: { 'player-selected': playerWinnerNumber() == 1 }, click: function () { playerWinnerNumber(1) }">
+                <img src="../../Content/heroes/scorpion.png" alt="">
+                <h4 data-bind="text: selectedPlayers()[0].name"></h4>
+            </a>
+            <h2>VS.</h2>
+            <a href="javascript:void(0);" data-bind="css: {'player-selected' : playerWinnerNumber() == 2}, click: function () { playerWinnerNumber(2) }">
+                <img src="../../Content/heroes/reptile.png" alt="">
+                <h4 data-bind="text: selectedPlayers()[1].name"></h4>
+            </a>
+        </div>
+        
+        <p>
+            <button data-bind="click: saveAndNextRound,enable: playerWinnerNumber" class="btn btn-large btn-block btn-primary">Save and Next Round</button>
+            <button data-bind="click: saveAndFinish, enable: playerWinnerNumber" class="btn btn-large btn-block btn-info">Save and Finish</button>
+            <button data-bind="click: cancel" class="btn btn-large btn-block">Cancel</button>
+        </p>
+    </fieldset>
+</section>

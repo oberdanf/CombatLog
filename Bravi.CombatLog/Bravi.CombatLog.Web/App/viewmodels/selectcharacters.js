@@ -1,6 +1,7 @@
 ﻿define(function (require) {
     var dataService = require('services/dataService'),
-        sharedSelectedPlayers = require('models/sharedSelectedPlayers');
+        sharedSelectedPlayers = require('models/sharedSelectedPlayers'),
+        router = require('durandal/plugins/router');
 
     var selectableCharacter = function (character) {
         var self = this;
@@ -11,10 +12,23 @@
     var playerToChoose = ko.observable('');
     var charactersToSelect = ko.observableArray([]);
 
-    var selectCharacter = function(selectedCharacter) {
+    var selectedCharacters = function() {
+        return charactersToSelect().filter(function (item) {
+            return item.selected() === true;
+        });
+    };
+
+    var confirmSelectedCharacterForCurrentPlayer = function () {
+        if (!selectedCharacters()) {
+            throw new Error('character must not be null');
+        }
+
+        var selectedCharacter = selectedCharacters()[0];
+        
         if (!selectedCharacter) {
             throw new Error('character must not be null');
         }
+
         if (!playerToChoose()) {
             throw new Error('must have a player');
         }
@@ -22,23 +36,18 @@
         var chosenPlayerNumber = playerToChoose().playerNumber;
 
         if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter1().player.playerNumber) {
-            sharedSelectedPlayers.setPlayer1Character(selectedCharacter);
+            sharedSelectedPlayers.setPlayer1Character(selectedCharacter.character);
+            charactersToSelect().forEach(function(item) {
+                item.selected(false);
+            });
+            playerToChoose(sharedSelectedPlayers.playerCharacter2().player);
         }
         else if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter2().player.playerNumber) {
-            sharedSelectedPlayers.setPlayer2Character(selectedCharacter);
+            sharedSelectedPlayers.setPlayer2Character(selectedCharacter.character);
+            router.navigateTo('#/combatlog');
         }
         else {
             throw new Error('Invalid player Number');
-        }
-
-
-        playersCharacters.push(new playerCharacter(playerToChoose(), selectedCharacter));
-
-        if (playersCharacters.length === 2) {
-            sharedSelectedPlayers.setPlayer1Character
-            router.navigateTo('#/combatlog');
-        } else {
-            playerToChoose(sharedSelectedPlayers.playerCharacter2().player);
         }
     };
     
@@ -57,11 +66,21 @@
 
         return deferred.promise();       
     };
+
+    var clearSelectedCharacters = function() {
+        if (!sharedSelectedPlayers || !sharedSelectedPlayers.playerCharacter1().player || !sharedSelectedPlayers.playerCharacter2().player) {
+            throw new Error('shared players not set.');
+        }
+
+        playerToChoose(sharedSelectedPlayers.playerCharacter1().player);
+    };
     
     return {
         charactersToSelect: charactersToSelect,
+        selectedCharacters: selectedCharacters,
         playerToChoose: playerToChoose,
-        selectCharacter: selectCharacter,
+        confirmSelectedCharacterForCurrentPlayer: confirmSelectedCharacterForCurrentPlayer,
+        clearSelectedCharacters: clearSelectedCharacters,
         viewAttached: function () {
             $('body').trigger('create');
             setTimeout(function () {
@@ -69,11 +88,7 @@
             }, 250);
         },
         activate: function () {
-            if (!sharedSelectedPlayers || !sharedSelectedPlayers.playerCharacter1().player || !sharedSelectedPlayers.playerCharacter2().player) {
-                throw new Error('shared players not set.');
-            }
-
-            playerToChoose(sharedSelectedPlayers.playerCharacter1().player);
+            clearSelectedCharacters();
             return setCharacters();
         }
     };

@@ -23,6 +23,7 @@
             if (!playerCharacter2()) {
                 throw new Error('player 2 is null');
             }
+            playerCharacter2().setCharacter(character);
         }
     };
 });
