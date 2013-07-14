@@ -1,4 +1,17 @@
-﻿#chooseWinner-container {
+﻿#section-selectCharacters article {
+    float: left;
+}
+
+#section-selectCharacters article div {
+    padding: 2px;
+}
+
+#section-selectCharacters article div:hover {
+    background-color: cornflowerblue;
+}
+
+
+#chooseWinner-container {
     margin-top: 5px;
     margin-bottom: 5px;
     border: 1px solid #ccc; 

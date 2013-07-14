@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<section id="section-selectCharacters">
     <h4 data-bind="html: 'Choose <span class=\'text-info\'>' + playerToChoose().name + '</span> Character'"></h4>
 
@@ -16,3 +17,31 @@
     <button class="btn btn-primary btn-block" data-bind="click: confirmSelectedCharacterForCurrentPlayer, enable: selectedCharacters().length == 1">Confirm</button>
 
 </section>
+=======
+﻿<section id="section-selectCharacters">
+    <address data-bind="text: playerToChoose().name"></address>
+    <section data-bind="foreach: charactersToSelect">
+        <article>
+            <div data-bind="">
+                <img src="#" alt="" 
+                     data-bind="attr: { src: character.thumbUrl, alt: character.name }, 
+                                click: function() {
+                                    if (!selected()) {
+                                        return;
+                                    }
+                                    ;
+                                    if (selected()) {
+                                        selected(false);
+                                    } else {
+                                        selected(true);
+                                    }
+                                },
+                                css: { 'active': selected, 'disabled': !selected() }"
+                    class="img-polaroid">
+                <address data-bind="text: character.name" class="text-center"></address>
+            </div>
+        </article>
+    </section>
+    <button class="btn btn-primary btn-block" data-bind="click: selectCharacter">Confirm</button>
+</section>
+>>>>>>> - MK9 avatars added;
