@@ -170,11 +170,13 @@
     <Content Include="App\services\___combatLogService.js" />
     <Content Include="App\services\___playerService.js" />
     <Content Include="App\viewmodels\combatlog.js" />
+    <Content Include="App\viewmodels\___combatlog.js" />
     <Content Include="App\viewmodels\home.js" />
     <Content Include="App\viewmodels\selectcharacters.js" />
     <Content Include="App\viewmodels\selectplayers.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\combatlog.html" />
+    <Content Include="App\views\___combatlog.html" />
     <Content Include="App\views\home.html" />
     <Content Include="App\views\selectcharacters.html" />
     <Content Include="App\views\selectplayers.html" />
@@ -190,6 +192,7 @@
     <Content Include="Content\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\characters\smoke.png" />
     <Content Include="Content\combatlog.css" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\font-awesome-ie7.min.css" />

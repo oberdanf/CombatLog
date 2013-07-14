@@ -8,33 +8,36 @@
         self.playerCharacter2 = playerCharacter2;
 
         self.roundNumber = ko.observable(1);
-        self.rounds = ko.observable([]);
+        self.rounds = [];
+        self.matchWinner = ko.observable('');
+        self.finished = ko.observable(false);
 
-        var finished = false;
-
-        self.finishRound = function (playerWinnerNumber, flawlessVictory) {
-            if (finished === true) {
+        self.finishRound = function (winner, flawlessVictory) {
+            if (self.finished() === true) {
                 throw new Error('match is finished');
             }
             
-            var currentRoundNumber = roundNumber();
+            var currentRoundNumber = self.roundNumber();
 
             if (currentRoundNumber === 1) {
-                self.rounds.push(new round(playerWinnerNumber, flawlessVictory));
-                roundNumber(roundNumber() + 1);
+                self.rounds.push(new round(winner, flawlessVictory));
+                self.roundNumber(self.roundNumber() + 1);
             }
             else if (currentRoundNumber === 2) {
-                self.rounds.push(new round(playerWinnerNumber, flawlessVictory));
-                var lastPlayerNumberWinner = self.rounds()[0].player.playerNumber;
-                if (lastPlayerNumberWinner !== playerWinnerNumber) {
-                    roundNumber(roundNumber() + 1);
+                self.rounds.push(new round(winner, flawlessVictory));
+
+                var lastRoundWinner = self.rounds[0].winner();
+                if (winner.playerNumber === lastRoundWinner.playerNumber) {
+                    self.matchWinner(winner);
+                    self.finished(true);
                 } else {
-                    finished = true;
+                    self.roundNumber(self.roundNumber() + 1);
                 }
             }
             else if (currentRoundNumber === 3) {
-                self.rounds.push(new round(playerWinnerNumber, flawlessVictory));
-                finished = true;
+                self.rounds.push(new round(winner, flawlessVictory));
+                self.matchWinner(winner);
+                self.finished(true);
             }
         };
     };

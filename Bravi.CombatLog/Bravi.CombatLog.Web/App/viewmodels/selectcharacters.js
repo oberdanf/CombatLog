@@ -1,7 +1,7 @@
 ﻿define(function (require) {
     var dataService = require('services/dataService'),
         sharedSelectedPlayers = require('models/sharedSelectedPlayers'),
-        playerCharacter = require('models/playerCharacter');
+        router = require('durandal/plugins/router');
 
     var selectableCharacter = function (character) {
         var self = this;
@@ -12,25 +12,42 @@
     var playerToChoose = ko.observable('');
     var charactersToSelect = ko.observableArray([]);
 
-    var playersCharacters = [];
+    var selectedCharacters = function() {
+        return charactersToSelect().filter(function (item) {
+            return item.selected() === true;
+        });
+    };
 
-    var selectCharacter = function(selectedCharacter) {
+    var confirmSelectedCharacterForCurrentPlayer = function () {
+        if (!selectedCharacters()) {
+            throw new Error('character must not be null');
+        }
+
+        var selectedCharacter = selectedCharacters()[0];
+        
         if (!selectedCharacter) {
             throw new Error('character must not be null');
         }
+
         if (!playerToChoose()) {
             throw new Error('must have a player');
         }
-        if (playersCharacters.length >= 2) {
-            throw new Error('must have only two players');
+
+        var chosenPlayerNumber = playerToChoose().playerNumber;
+
+        if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter1().player.playerNumber) {
+            sharedSelectedPlayers.setPlayer1Character(selectedCharacter.character);
+            charactersToSelect().forEach(function(item) {
+                item.selected(false);
+            });
+            playerToChoose(sharedSelectedPlayers.playerCharacter2().player);
         }
-
-        playersCharacters.push(new playerCharacter(playerToChoose(), selectedCharacter));
-
-        if (playersCharacters.length === 2) {
+        else if (chosenPlayerNumber === sharedSelectedPlayers.playerCharacter2().player.playerNumber) {
+            sharedSelectedPlayers.setPlayer2Character(selectedCharacter.character);
             router.navigateTo('#/combatlog');
-        } else {
-            playerToChoose(sharedSelectedPlayers.player2());
+        }
+        else {
+            throw new Error('Invalid player Number');
         }
     };
     
@@ -49,11 +66,21 @@
 
         return deferred.promise();       
     };
+
+    var clearSelectedCharacters = function() {
+        if (!sharedSelectedPlayers || !sharedSelectedPlayers.playerCharacter1().player || !sharedSelectedPlayers.playerCharacter2().player) {
+            throw new Error('shared players not set.');
+        }
+
+        playerToChoose(sharedSelectedPlayers.playerCharacter1().player);
+    };
     
     return {
         charactersToSelect: charactersToSelect,
+        selectedCharacters: selectedCharacters,
         playerToChoose: playerToChoose,
-        selectCharacter: selectCharacter,
+        confirmSelectedCharacterForCurrentPlayer: confirmSelectedCharacterForCurrentPlayer,
+        clearSelectedCharacters: clearSelectedCharacters,
         viewAttached: function () {
             $('body').trigger('create');
             setTimeout(function () {
@@ -61,11 +88,7 @@
             }, 250);
         },
         activate: function () {
-            if (!sharedSelectedPlayers || !sharedSelectedPlayers.player1 || !sharedSelectedPlayers.player2) {
-                throw new Error('shared players not set.');
-            }
-
-            playerToChoose(sharedSelectedPlayers.player1());
+            clearSelectedCharacters();
             return setCharacters();
         }
     };

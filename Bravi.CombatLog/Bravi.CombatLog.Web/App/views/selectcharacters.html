@@ -1,28 +1,18 @@
 ﻿<section id="section-selectCharacters">
-    <!--<h3 data-bind="html: 'Choose <span class=\'text-info\'>' + playerToChoose().name + '</span> Character'"></h3>-->
+    <h4 data-bind="html: 'Choose <span class=\'text-info\'>' + playerToChoose().name + '</span> Character'"></h4>
 
-    <ul data-role="listview" data-inset="true">
-        <li><a href="#">
-            <img src="../../Content/characters/scorpion.png">
-            <h2>Broken Bells</h2>
-            <p>Broken Bells</p>
-        </a>
+
+    <ul class="nav nav-pills nav-stacked thumbnails">
+        <!-- ko foreach: charactersToSelect -->
+        <li class="span3 text-center" data-bind="css: { 'active': selected, 'disabled': !selected() && $parent.selectedCharacters().length == 1 }">
+            <a href="#" data-bind="click: function () { if (!selected() && $parent.selectedCharacters().length == 1) { return; }; if (selected()) { selected(false); } else { selected(true); } }" class="well">
+                <img data-bind="attr: { src: character.thumbUrl }"/>
+                <h4 data-bind="text: character.name"></h4>
+            </a>
         </li>
-        <li><a href="#">
-            <img src="../../Content/characters/reptile.png">
-            <h2>Warning</h2>
-            <p>Hot Chip</p>
-        </a>
-        </li>
+        <!-- /ko -->
     </ul>
 
-    <!--<button class="btn btn-primary btn-block" data-bind="click: selectCharacter">Confirm</button>-->
+    <button class="btn btn-primary btn-block" data-bind="click: confirmSelectedCharacterForCurrentPlayer, enable: selectedCharacters().length == 1">Confirm</button>
 
-
-    <!--<li>
-            <a href="#">
-                <img data-bind="attr: { src: character.thumbUrl, alt: character.name, title: character.name }" alt="" />
-                <h2 data-bind="text: character.name"></h2>
-            </a>
-        </li>-->
 </section>
