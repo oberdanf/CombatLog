@@ -1,3 +1,34 @@
 ﻿<section id="section-combatlog">
-    <h1>Combat log view!</h1>
+    <fieldset>
+        <legend>
+            <h2 data-bind="text: 'Round ' + roundNumber()"><small>Choose Winner</small></h2>
+        </legend>
+
+        <div id="chooseWinner-container" class="text-center">
+            <a href="javascript:void(0);" data-bind="enable: !isMatchFinished(), css: { 'player-selected': selectablePlayerCharacter1().selected() }, click: function () { selectPlayer(selectablePlayerCharacter1().playerCharacter.player.playerNumber); }">
+                <img data-bind="attr: { src: selectablePlayerCharacter1().playerCharacter.char.thumbUrl, alt: selectablePlayerCharacter1().playerCharacter.char.name, title: selectablePlayerCharacter1().playerCharacter.char.name }">
+                <h4 data-bind="text: selectablePlayerCharacter1().playerCharacter.player.name"></h4>
+            </a>
+            <h2>VS.</h2>
+            <a href="javascript:void(0);" data-bind="enable: !isMatchFinished(), css: { 'player-selected': selectablePlayerCharacter2().selected() }, click: function () { selectPlayer(selectablePlayerCharacter2().playerCharacter.player.playerNumber); }">
+                <img data-bind="attr: { src: selectablePlayerCharacter2().playerCharacter.char.thumbUrl, alt: selectablePlayerCharacter2().playerCharacter.char.name, title: selectablePlayerCharacter2().playerCharacter.char.name }">
+                <h4 data-bind="text: selectablePlayerCharacter2().playerCharacter.player.name"></h4>
+            </a>
+        </div>
+
+        <label class="checkbox">
+            <input type="checkbox" data-bind="checked: flawlessVictory, enable: !isMatchFinished()" />
+            Flawless Victory
+        </label>
+
+        <p data-bind="visible: !isMatchFinished()">
+            <button data-bind="click: setRoundWinner, enable: !isMatchFinished()" class="btn btn-large btn-block btn-primary">Ok! Next Round!</button>            
+            <button data-bind="click: cancelCombat" class="btn btn-large btn-block">Cancel</button>
+        </p>
+        
+        <p data-bind="visible: isMatchFinished">
+            <button data-bind="click: saveAndFinishCombat" class="btn btn-large btn-block btn-info">Save and Finish</button>
+            <button data-bind="click: saveAndNextMatch" class="btn btn-large btn-block btn-info">Save and Next Match</button>
+        </p>
+    </fieldset>
 </section>

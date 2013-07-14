@@ -1,22 +1,33 @@
 ﻿define(function(require) {
     var dataService = require('services/dataService'),
         combat = require('models/combat'),
-        match = require('models/match');
+        match = require('models/match'),
+        router = require('durandal/plugins/router');
 
     var currentCombat = ko.observable('');
     var playerCharacter1 = ko.observable('');
     var playerCharacter2 = ko.observable('');
+    var roundNumber = ko.observable('');
+    var isMatchFinished = ko.observable(false);
 
     var _addNewMatch = function () {
-        if (!currentCombat()) {
-            throw new Error('No combat is started');
-        }
         if (!playerCharacter1() || !playerCharacter2()) {
             throw new Error('Players are not set');
         }
         
         var matchToAdd = new match(playerCharacter1(), playerCharacter2());
         currentCombat().addMatch(matchToAdd);
+        
+        roundNumber('');
+        isMatchFinished(false);
+
+        roundNumber(currentCombat().latestMatch().roundNumber());
+        currentCombat().latestMatch().roundNumber.subscribe(function(newValue) {
+            roundNumber(newValue);            
+        });
+        currentCombat().latestMatch().finished.subscribe(function (newValue) {
+            isMatchFinished(newValue);
+        });        
     };
 
     var setPlayersAndCharacters = function(playerChar1, playerChar2) {
@@ -27,12 +38,12 @@
     var startCombat = function () {
         if (!currentCombat()) {
             currentCombat(new combat());
-        }
+        }        
         if (!playerCharacter1() || !playerCharacter2()) {
             throw new Error('Players are not set');
         }
 
-        _addNewMatch();
+        _addNewMatch();        
     };
 
     var saveAndFinishCombat = function () {
@@ -42,11 +53,10 @@
         dataService.syncCombatWithServer(combatToSync).done(successSync);
         
         function successSync(dataReturned) {
-            currentCombat('');
-            playerCharacter1('');
-            playerCharacter2('');
+            clear();
             
             deferred.resolve();
+            router.navigateTo('#/');
         };
 
         return deferred.promise();
@@ -73,10 +83,12 @@
         return deferred.promise();
     };
 
-    var cancelCombat = function() {
+    var clear = function() {
         currentCombat('');
         playerCharacter1('');
         playerCharacter2('');
+        roundNumber('');
+        isMatchFinished(false);
     };
     
     return {
@@ -84,6 +96,15 @@
         setPlayersAndCharacters: setPlayersAndCharacters,
         saveAndFinishCombat: saveAndFinishCombat,
         saveAndAddMatch: saveAndAddMatch,
-        cancelCombat: cancelCombat
+        finishAndNextRound: function (winner, flawlessVictory) {
+            currentCombat().latestMatch().finishRound(winner, flawlessVictory);
+        },
+        roundNumber: roundNumber,
+        isMatchFinished: isMatchFinished,
+        cancelCombat: function() {
+            clear();
+            router.navigateTo('#/');
+        },
+        clear: clear
     };
 });

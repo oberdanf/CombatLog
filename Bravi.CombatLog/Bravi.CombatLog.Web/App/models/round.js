@@ -1,8 +1,8 @@
 ﻿define(function() {
-    var round = function (playerNumberWinner, flawlessVictory) {
+    var round = function (winner, flawlessVictory) {
         var self = this;
 
-        self.playerNumberWinner = playerNumberWinner;
+        self.winner = ko.observable(winner);
         self.flawlessVictory = flawlessVictory;
     };
 
